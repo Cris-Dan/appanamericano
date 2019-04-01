@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
+import Nav from './components/Nav';
+import AgregarDistritoForm from './components/AgregarDistritoForm';
 class App extends Component {
     render() {
         return (
-            <h1>Appanamericano</h1>
+            <div>
+                <Nav />
+
+                <div className="container">
+                    <AgregarDistritoForm />
+                </div>
+            </div>
         )
     }
 }
