@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 
-class AgregarDistritoForm extends Component {
+class AgregarSedeForm extends Component {
 
     constructor() {
         super();
         this.state = {
             nombre: '',
-            distritos: []
+            sedes: []
         }
     }
 
     componentDidMount() {
-        this.fetchDistritos();
+        this.fetchSedes();
     }
 
-    fetchDistritos() {
-        fetch('/api/distritos').then(res => res.json()).then(data => {
-            this.setState({ distritos: data });
+    fetchSedes() {
+        fetch('/api/sedes').then(res => res.json()).then(data => {
+            this.setState({ sedes: data });
         });
     }
 
@@ -27,8 +27,8 @@ class AgregarDistritoForm extends Component {
         });
     }
 
-    AgregarDistrito(e) {
-        fetch('/api/distritos', {
+    AgregarSede(e) {
+        fetch('/api/sedes', {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers: {
@@ -38,17 +38,17 @@ class AgregarDistritoForm extends Component {
         })
             .then(data => {
 
-                M.toast({ html: 'Distrito Agregado' });
+                M.toast({ html: 'Sede Agregado' });
                 this.setState({ nombre: '' });
-                this.fetchDistritos();
+                this.fetchSedes();
             })
             .catch(err => console.log(err));
         e.preventDefault();
     }
 
-    eliminarDistrito(id) {
-        if (confirm('estas seguro que quieres eliminar este distrito?')) {
-            fetch('/api/distritos/' + id, {
+    eliminarSede(id) {
+        if (confirm('estas seguro que quieres eliminar esta sede?')) {
+            fetch('/api/sedes/' + id, {
                 method: 'DELETE',
                 body: JSON.stringify(this.state),
                 headers: {
@@ -56,8 +56,8 @@ class AgregarDistritoForm extends Component {
                     'Accept': 'application/json'
                 }
             }).then(data => {
-                M.toast({ html: 'Distrito eliminado' });
-                this.fetchDistritos();
+                M.toast({ html: 'Sede eliminado' });
+                this.fetchSedes();
             });
         }
     }
@@ -67,12 +67,12 @@ class AgregarDistritoForm extends Component {
             <div className="section">
                 <div className="row">
                     <div className="col s8 push-s2">
-                        <button className="waves-effect waves-light btn modal-trigger" data-target="modal1">Agregar Distrito</button>
+                        <button className="waves-effect waves-light btn modal-trigger" data-target="modal1">Agregar Sede</button>
                         <div id="modal1" className="modal">
                             <div className="modal-content">
-                                <form onSubmit={this.AgregarDistrito.bind(this)}>
+                                <form onSubmit={this.AgregarSede.bind(this)}>
                                     <div className="input-field col s12">
-                                        <input type="text" name="nombre" value={this.state.nombre} placeholder="Nombre del Distrito" onChange={this.obtenerCambio.bind(this)}></input>
+                                        <input type="text" name="nombre" value={this.state.nombre} placeholder="Nombre de la sede" onChange={this.obtenerCambio.bind(this)}></input>
                                     </div>
 
                                     <div className="row">
@@ -96,14 +96,14 @@ class AgregarDistritoForm extends Component {
                             </thead>
                             <tbody>
                                 {
-                                    this.state.distritos.map(distrito => {
+                                    this.state.sedes.map(sede => {
                                         return (
-                                            <tr key={distrito._id}>
+                                            <tr key={sede._id}>
                                                 <td>
-                                                    {distrito.nombre}
+                                                    {sede.nombre}
                                                 </td>
                                                 <td>
-                                                    <button className="btn teal lighten-1 btnPropio" onClick={() => this.eliminarDistrito(distrito._id)}><i className="material-icons">delete</i></button>
+                                                    <button className="btn teal lighten-1 btnPropio" onClick={() => this.eliminarSede(sede._id)}><i className="material-icons">delete</i></button>
                                                 </td>
                                             </tr>
                                         )
@@ -117,4 +117,4 @@ class AgregarDistritoForm extends Component {
         )
     }
 }
-export default AgregarDistritoForm;
+export default AgregarSedeForm;

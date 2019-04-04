@@ -15,8 +15,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //rutas
-app.use('/api/distritos',require('./routes/distritos'));
-
+app.use('/api/sedes',require('./routes/sedes'));
+app.use('/api/admins',require('./routes/admins'));
 
 //archivos estaticos
 app.use(express.static(path.join(__dirname,'public')));

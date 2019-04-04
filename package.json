@@ -9,6 +9,7 @@
     "express": "^4.16.4",
     "fs-extra": "^7.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.4.20",
     "morgan": "^1.9.1"
   },
@@ -31,7 +32,7 @@
     "start": "cross-env NODE_ENV=production node backend/index.js",
     "dev": "cross-env NODE_ENV=development nodemon backend/index.js",
     "webpack": "cross-env NODE_ENV=development webpack --mode development --watch",
-    "build":"cross-env NODE_ENV=production webpack"
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "keywords": [],
   "author": "",

@@ -1,21 +1,21 @@
 const { Router } = require('express');
 const router = Router();
-const Distritos = require('../models/Distrito');
+const Sedes = require('../models/Sede');
 
 router.get('/', async (req, res) => {
-    const distritos = await Distritos.find();
-    res.json(distritos);
+    const sede = await Sedes.find();
+    res.json(sede);
 });
 
 router.post('/', async (req, res) => {
     const { nombre } = req.body;
-    const nuevoDistrito = new Distritos({ nombre });
-    await nuevoDistrito.save();
+    const nuevaSede = new Sedes({ nombre });
+    await nuevaSede.save();
     res.json({ mensaje: 'agregado' });
 });
 
 router.delete('/:id', async (req, res) => {
-    await Distritos.findByIdAndDelete(req.params.id);
+    await Sedes.findByIdAndDelete(req.params.id);
     res.json({ mensaje: 'elminado' });
 });
 

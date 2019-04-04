@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
-const DistritoSchema = new Schema({
+const SedeSchema = new Schema({
     nombre: { type: String, required: true }
 });
 
-module.exports = model('Distrito',DistritoSchema);
+module.exports = model('Sede',SedeSchema);
